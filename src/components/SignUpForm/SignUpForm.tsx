@@ -3,20 +3,20 @@ import { AnimatePresence } from "framer-motion";
 import { StepIndicator } from "./StepIndicator";
 import { FormStep } from "./FormStep";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { useToast } from "@/components/ui/use-toast";
 import { VerificationStep } from "./VerificationStep";
-
-const isValidEmail = (email: string) => {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
-};
+import { BasicInformationStep } from "./steps/BasicInformationStep";
+import { GoalSelectionStep } from "./steps/GoalSelectionStep";
+import { LocationStep } from "./steps/LocationStep";
+import { ContactStep } from "./steps/ContactStep";
+import { FormData } from "@/types/form";
+import { getFormSteps } from "@/config/formSteps";
+import { validateRequiredFields } from "@/utils/formValidation";
 
 export const SignUpForm = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const { toast } = useToast();
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     fullName: "",
     email: "",
     password: "",
@@ -26,44 +26,7 @@ export const SignUpForm = () => {
     verificationCode: "",
   });
 
-  const steps = [
-    {
-      title: "Basic Information",
-      description: "Let's start with your account details",
-      fields: ["fullName", "email", "password"],
-      validate: () => {
-        if (!isValidEmail(formData.email)) {
-          toast({
-            title: "Invalid Email",
-            description: "Please enter a valid email address",
-            variant: "destructive",
-          });
-          return false;
-        }
-        return true;
-      },
-    },
-    {
-      title: "Choose Your Goal",
-      description: "Tell us what brings you to TaskIQ",
-      fields: ["goal"],
-    },
-    {
-      title: "Location",
-      description: "Help us connect you with your local community",
-      fields: ["location"],
-    },
-    {
-      title: "Contact Information",
-      description: "Add your phone number for verification",
-      fields: ["phone"],
-    },
-    {
-      title: "Verify Your Phone",
-      description: "Enter the code we sent to your phone",
-      fields: ["verificationCode"],
-    },
-  ];
+  const steps = getFormSteps();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -72,7 +35,7 @@ export const SignUpForm = () => {
 
   const handleNext = () => {
     const currentFields = steps[currentStep].fields;
-    const isValid = currentFields.every((field) => formData[field]?.trim());
+    const isValid = validateRequiredFields(formData, currentFields);
 
     if (!isValid) {
       toast({
@@ -83,7 +46,6 @@ export const SignUpForm = () => {
       return;
     }
 
-    // Run step-specific validation if it exists
     if (steps[currentStep].validate && !steps[currentStep].validate()) {
       return;
     }
@@ -107,102 +69,13 @@ export const SignUpForm = () => {
   const renderStepContent = (step: number) => {
     switch (step) {
       case 0:
-        return (
-          <div className="space-y-4">
-            <div>
-              <Label htmlFor="fullName">Full Name</Label>
-              <Input
-                id="fullName"
-                name="fullName"
-                value={formData.fullName}
-                onChange={handleInputChange}
-                className="input-field"
-                placeholder="John Doe"
-              />
-            </div>
-            <div>
-              <Label htmlFor="email">Email Address</Label>
-              <Input
-                id="email"
-                name="email"
-                type="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                className="input-field"
-                placeholder="john@example.com"
-              />
-            </div>
-            <div>
-              <Label htmlFor="password">Password</Label>
-              <Input
-                id="password"
-                name="password"
-                type="password"
-                value={formData.password}
-                onChange={handleInputChange}
-                className="input-field"
-                placeholder="••••••••"
-              />
-            </div>
-          </div>
-        );
+        return <BasicInformationStep formData={formData} onInputChange={handleInputChange} />;
       case 1:
-        return (
-          <div className="space-y-4">
-            <div className="grid grid-cols-1 gap-4">
-              {["Rent gear or services", "Offer gear or services", "Both"].map(
-                (option) => (
-                  <button
-                    key={option}
-                    onClick={() =>
-                      setFormData((prev) => ({ ...prev, goal: option }))
-                    }
-                    className={`p-4 rounded-lg border-2 text-left transition-all duration-200 ${
-                      formData.goal === option
-                        ? "border-primary bg-primary/5"
-                        : "border-gray-200 hover:border-primary/50"
-                    }`}
-                  >
-                    <div className="font-medium">{option}</div>
-                  </button>
-                )
-              )}
-            </div>
-          </div>
-        );
+        return <GoalSelectionStep formData={formData} setFormData={setFormData} />;
       case 2:
-        return (
-          <div className="space-y-4">
-            <div>
-              <Label htmlFor="location">Your Location</Label>
-              <Input
-                id="location"
-                name="location"
-                value={formData.location}
-                onChange={handleInputChange}
-                className="input-field"
-                placeholder="Enter your city"
-              />
-            </div>
-          </div>
-        );
+        return <LocationStep formData={formData} onInputChange={handleInputChange} />;
       case 3:
-        return (
-          <div className="space-y-4">
-            <div>
-              <Label htmlFor="phone">Phone Number</Label>
-              <Input
-                id="phone"
-                name="phone"
-                type="tel"
-                value={formData.phone}
-                onChange={handleInputChange}
-                className="input-field"
-                placeholder="+1 (555) 000-0000"
-              />
-            </div>
-          </div>
-        );
+        return <ContactStep formData={formData} onInputChange={handleInputChange} />;
       case 4:
         return <VerificationStep phone={formData.phone} />;
       default:
