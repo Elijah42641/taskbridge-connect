@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/components/ui/use-toast";
+import { VerificationStep } from "./VerificationStep";
 
 export const SignUpForm = () => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -17,6 +18,7 @@ export const SignUpForm = () => {
     goal: "",
     location: "",
     phone: "",
+    verificationCode: "",
   });
 
   const steps = [
@@ -36,9 +38,14 @@ export const SignUpForm = () => {
       fields: ["location"],
     },
     {
-      title: "Verification",
-      description: "Secure your account with phone verification",
+      title: "Contact Information",
+      description: "Add your phone number for verification",
       fields: ["phone"],
+    },
+    {
+      title: "Verify Your Phone",
+      description: "Enter the code we sent to your phone",
+      fields: ["verificationCode"],
     },
   ];
 
@@ -175,6 +182,8 @@ export const SignUpForm = () => {
             </div>
           </div>
         );
+      case 4:
+        return <VerificationStep phone={formData.phone} />;
       default:
         return null;
     }
