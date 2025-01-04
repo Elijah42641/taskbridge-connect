@@ -37,8 +37,8 @@ export const VerificationStep = ({ phone }: VerificationStepProps) => {
             maxLength={6}
             render={({ slots }) => (
               <InputOTPGroup className="gap-2">
-                {slots.map((slot, index) => (
-                  <InputOTPSlot key={index} {...slot} />
+                {slots.map((slot, i) => (
+                  <InputOTPSlot key={i} {...slot} data-index={i} />
                 ))}
               </InputOTPGroup>
             )}
