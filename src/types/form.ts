@@ -12,5 +12,5 @@ export interface FormStep {
   title: string;
   description: string;
   fields: (keyof FormData)[];
-  validate?: () => boolean;
+  validate?: (formData: FormData) => boolean;
 }

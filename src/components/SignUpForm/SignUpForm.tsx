@@ -46,7 +46,7 @@ export const SignUpForm = () => {
       return;
     }
 
-    if (steps[currentStep].validate && !steps[currentStep].validate()) {
+    if (steps[currentStep].validate && !steps[currentStep].validate(formData)) {
       return;
     }
 

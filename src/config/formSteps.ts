@@ -1,4 +1,4 @@
-import { FormStep } from "@/types/form";
+import { FormData, FormStep } from "@/types/form";
 import { isValidEmail } from "@/utils/formValidation";
 import { toast } from "@/components/ui/use-toast";
 
@@ -7,7 +7,7 @@ export const getFormSteps = (): FormStep[] => [
     title: "Basic Information",
     description: "Let's start with your account details",
     fields: ["fullName", "email", "password"],
-    validate: () => {
+    validate: (formData: FormData) => {
       if (!isValidEmail(formData.email)) {
         toast({
           title: "Invalid Email",
