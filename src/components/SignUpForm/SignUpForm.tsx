@@ -8,6 +8,11 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/components/ui/use-toast";
 import { VerificationStep } from "./VerificationStep";
 
+const isValidEmail = (email: string) => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+};
+
 export const SignUpForm = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const { toast } = useToast();
@@ -26,6 +31,17 @@ export const SignUpForm = () => {
       title: "Basic Information",
       description: "Let's start with your account details",
       fields: ["fullName", "email", "password"],
+      validate: () => {
+        if (!isValidEmail(formData.email)) {
+          toast({
+            title: "Invalid Email",
+            description: "Please enter a valid email address",
+            variant: "destructive",
+          });
+          return false;
+        }
+        return true;
+      },
     },
     {
       title: "Choose Your Goal",
@@ -64,6 +80,11 @@ export const SignUpForm = () => {
         description: "Please fill in all required fields",
         variant: "destructive",
       });
+      return;
+    }
+
+    // Run step-specific validation if it exists
+    if (steps[currentStep].validate && !steps[currentStep].validate()) {
       return;
     }
 
