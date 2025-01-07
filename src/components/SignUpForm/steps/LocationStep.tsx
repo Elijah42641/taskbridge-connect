@@ -1,5 +1,5 @@
 import { FormData } from "@/types/form";
-import { MapSelector } from "../MapSelector";
+import { GlobeSelector } from "../GlobeSelector";
 import { Label } from "@/components/ui/label";
 
 interface LocationStepProps {
@@ -8,11 +8,11 @@ interface LocationStepProps {
 }
 
 export const LocationStep = ({ formData, onInputChange }: LocationStepProps) => {
-  const handleLocationSelect = (address: string) => {
+  const handleLocationSelect = (coordinates: string) => {
     const event = {
       target: {
         name: 'location',
-        value: address
+        value: coordinates
       }
     } as React.ChangeEvent<HTMLInputElement>;
     
@@ -24,12 +24,12 @@ export const LocationStep = ({ formData, onInputChange }: LocationStepProps) => 
       <div>
         <Label>Select Your Location</Label>
         <p className="text-sm text-muted-foreground mb-4">
-          Click on the map to select your location
+          Click on the globe to select your location
         </p>
-        <MapSelector onLocationSelect={handleLocationSelect} />
+        <GlobeSelector onLocationSelect={handleLocationSelect} />
         {formData.location && (
           <p className="mt-2 text-sm text-muted-foreground">
-            Selected location: {formData.location}
+            Selected coordinates: {formData.location}
           </p>
         )}
       </div>
