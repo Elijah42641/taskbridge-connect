@@ -1,6 +1,6 @@
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { FormData } from "@/types/form";
+import { MapSelector } from "../MapSelector";
+import { Label } from "@/components/ui/label";
 
 interface LocationStepProps {
   formData: FormData;
@@ -8,29 +8,30 @@ interface LocationStepProps {
 }
 
 export const LocationStep = ({ formData, onInputChange }: LocationStepProps) => {
-  const getCharacterCount = (value: string) => {
-    return `${value.length}/100`;
+  const handleLocationSelect = (address: string) => {
+    const event = {
+      target: {
+        name: 'location',
+        value: address
+      }
+    } as React.ChangeEvent<HTMLInputElement>;
+    
+    onInputChange(event);
   };
 
   return (
     <div className="space-y-4">
       <div>
-        <Label htmlFor="location">Your Location</Label>
-        <div className="relative">
-          <Input
-            id="location"
-            name="location"
-            value={formData.location}
-            onChange={onInputChange}
-            className="input-field pr-16"
-            placeholder="Enter your city"
-            minLength={2}
-            maxLength={100}
-          />
-          <span className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-gray-500">
-            {getCharacterCount(formData.location)}
-          </span>
-        </div>
+        <Label>Select Your Location</Label>
+        <p className="text-sm text-muted-foreground mb-4">
+          Click on the map to select your location
+        </p>
+        <MapSelector onLocationSelect={handleLocationSelect} />
+        {formData.location && (
+          <p className="mt-2 text-sm text-muted-foreground">
+            Selected location: {formData.location}
+          </p>
+        )}
       </div>
     </div>
   );
