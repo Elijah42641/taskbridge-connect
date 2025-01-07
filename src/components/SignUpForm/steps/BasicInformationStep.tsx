@@ -9,41 +9,52 @@ interface BasicInformationStepProps {
 
 export const BasicInformationStep = ({ formData, onInputChange }: BasicInformationStepProps) => {
   return (
-    <div className="space-y-4">
-      <div>
-        <Label htmlFor="fullName">Full Name</Label>
+    <div className="space-y-6 animate-fade-in">
+      <div className="space-y-2">
+        <Label htmlFor="fullName" className="text-base font-medium text-gray-700">
+          Full Name
+        </Label>
         <Input
           id="fullName"
           name="fullName"
           value={formData.fullName}
           onChange={onInputChange}
-          className="input-field"
+          className="input-field hover-lift"
           placeholder="John Doe"
         />
       </div>
-      <div>
-        <Label htmlFor="email">Email Address</Label>
+      
+      <div className="space-y-2">
+        <Label htmlFor="email" className="text-base font-medium text-gray-700">
+          Email Address
+        </Label>
         <Input
           id="email"
           name="email"
           type="email"
           value={formData.email}
           onChange={onInputChange}
-          className="input-field"
+          className="input-field hover-lift"
           placeholder="john@example.com"
         />
       </div>
-      <div>
-        <Label htmlFor="password">Password</Label>
+      
+      <div className="space-y-2">
+        <Label htmlFor="password" className="text-base font-medium text-gray-700">
+          Password
+        </Label>
         <Input
           id="password"
           name="password"
           type="password"
           value={formData.password}
           onChange={onInputChange}
-          className="input-field"
+          className="input-field hover-lift"
           placeholder="••••••••"
         />
+        <p className="text-sm text-muted-foreground mt-1">
+          Must be at least 8 characters long
+        </p>
       </div>
     </div>
   );
