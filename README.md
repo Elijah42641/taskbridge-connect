@@ -1,69 +1,80 @@
-# Welcome to your Lovable project
+# TaskBridge Connect 🌉
 
-## Project info
+[![Built with Lovable](https://img.shields.io/badge/Built%20with-Lovable-purple.svg)](https://lovable.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue.svg)](https://www.typescriptlang.org/)
+[![React](https://img.shields.io/badge/React-18.0-blue.svg)](https://reactjs.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.0-38B2AC.svg)](https://tailwindcss.com/)
 
-**URL**: https://lovable.dev/projects/9ed1b240-a087-4097-940f-b464a8a824ef
+A modern web application for connecting users and managing tasks efficiently. Built with React, TypeScript, and Tailwind CSS.
 
-## How can I edit this code?
+## 🚀 Live Demo
 
-There are several ways of editing your application.
+Check out the live demo: [TaskBridge Connect](https://lovable.dev/projects/9ed1b240-a087-4097-940f-b464a8a824ef)
 
-**Use Lovable**
+## ✨ Features
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/9ed1b240-a087-4097-940f-b464a8a824ef) and start prompting.
+- 📝 Multi-step sign-up process
+- 🌍 County-based location selection
+- 🔒 Secure authentication
+- 📱 Fully responsive design
+- 🎨 Modern UI with Tailwind CSS
 
-Changes made via Lovable will be committed automatically to this repo.
+## 🛠️ Tech Stack
 
-**Use your preferred IDE**
+- [Vite](https://vitejs.dev/) - Next Generation Frontend Tooling
+- [React](https://reactjs.org/) - A JavaScript library for building user interfaces
+- [TypeScript](https://www.typescriptlang.org/) - JavaScript with syntax for types
+- [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework
+- [shadcn/ui](https://ui.shadcn.com/) - Re-usable components built with Radix UI and Tailwind CSS
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 🚀 Quick Start
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
+1. Clone the repository:
+```bash
 git clone <YOUR_GIT_URL>
+```
 
-# Step 2: Navigate to the project directory.
+2. Install dependencies:
+```bash
 cd <YOUR_PROJECT_NAME>
+npm install
+```
 
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+3. Start the development server:
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## 🔧 Development
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+You can edit this project in several ways:
 
-**Use GitHub Codespaces**
+### Using Lovable (Recommended)
+Visit the [Lovable Project](https://lovable.dev/projects/9ed1b240-a087-4097-940f-b464a8a824ef) and start prompting. Changes made via Lovable will be automatically committed to this repo.
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### Using Your IDE
+Work locally using your preferred IDE:
+1. Clone the repo
+2. Make changes
+3. Push to update both the repo and Lovable
 
-## What technologies are used for this project?
+### Using GitHub Codespaces
+1. Click the "Code" button
+2. Select "Codespaces"
+3. Click "New codespace"
 
-This project is built with .
+## 📦 Deployment
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### Quick Deploy
+Open [Lovable](https://lovable.dev/projects/9ed1b240-a087-4097-940f-b464a8a824ef) and click on Share -> Publish.
 
-## How can I deploy this project?
+### Custom Domain
+While we don't currently support custom domains directly, you can deploy to Netlify for custom domain support. Visit our [Custom domains documentation](https://docs.lovable.dev/tips-tricks/custom-domain/) for more details.
 
-Simply open [Lovable](https://lovable.dev/projects/9ed1b240-a087-4097-940f-b464a8a824ef) and click on Share -> Publish.
+## 📝 License
 
-## I want to use a custom domain - is that possible?
+This project is MIT licensed.
 
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+---
+
+Built with ❤️ using [Lovable](https://lovable.dev)
